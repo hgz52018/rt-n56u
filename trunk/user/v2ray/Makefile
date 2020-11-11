@@ -1,6 +1,6 @@
 THISDIR = $(shell pwd)
 v2ray_dir="v2ray.com/core/main"
-V2ray_VERSION := 4.32.0
+V2ray_VERSION := 4.32.1
 V2ray_URL := https://codeload.github.com/v2fly/v2ray-core/tar.gz/v$(V2ray_VERSION)
 V2RAY_SED_ARGS:=
 V2RAY_SED_ARGS += \
