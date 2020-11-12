@@ -1,9 +1,7 @@
 THISDIR = $(shell pwd)
 v2ray_dir="v2ray.com/core/main"
-export GO111MODULE=on
-export GOPROXY=https://goproxy.io
-V2ray_VERSION := 4.31.2
-V2ray_URL := https://codeload.github.com/v2ray/v2ray-core/tar.gz/v$(V2ray_VERSION)
+V2ray_VERSION := 4.32.1
+V2ray_URL := https://codeload.github.com/v2fly/v2ray-core/tar.gz/v$(V2ray_VERSION)
 V2RAY_SED_ARGS:=
 V2RAY_SED_ARGS += \
 	s/_ "v2ray.com\/core\/main\/json"/\/\/ &/; \
@@ -31,7 +29,8 @@ build_v2ray:
 	sed -i \
 			'$(V2RAY_SED_ARGS)' \
 			distro/all/all.go ; \
-	GOOS=linux GOARCH=mipsle go build -ldflags "-w -s" -o $(THISDIR)/bin/v2ray; \
+	go env -w GO111MODULE=on GOPROXY=https://goproxy.cn,https://goproxy.io,direct; \
+	CGO_ENABLED=0 GOOS=linux GOARCH=mipsle go build -trimpath -ldflags "-w -s" -o $(THISDIR)/bin/v2ray; \
 	)
 
 clean:
